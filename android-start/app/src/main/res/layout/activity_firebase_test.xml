@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_firebase_test"
     android:layout_width="match_parent"
@@ -8,6 +8,34 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="com.google.firebase.codelab.friendlychat.FirebaseTestActivity">
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/productResult"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <EditText
+        android:id="@+id/productInfo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:weightSum="2"
+        android:layout_height="50dp">
+
+        <Button
+            android:id="@+id/sendInfo"
+            android:text="SEND"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="50dp" />
+        <Button
+            android:id="@+id/getInfo"
+            android:text="GET"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="50dp" />
+    </LinearLayout>
+</LinearLayout>
