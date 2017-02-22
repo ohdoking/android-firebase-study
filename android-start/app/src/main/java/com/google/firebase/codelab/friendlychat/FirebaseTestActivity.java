@@ -25,6 +25,7 @@ public class FirebaseTestActivity extends AppCompatActivity {
 
     private DatabaseReference dr;
 
+    private DatabaseReference productInfo;
     public static final String SOMETHINGS = "test/somethings";
 
     @Override
@@ -50,20 +51,22 @@ public class FirebaseTestActivity extends AppCompatActivity {
                 product.setPrice(1000);
                 product.setType("fruits");
 
-                dr.child("product").setValue(product);
+                productInfo = dr.push();
+                productInfo.setValue(product);
             }
         });
 
         getBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference productInfo = dr.child("product");
 
-                productInfo.addValueEventListener(new ValueEventListener() {
+                DatabaseReference productInfoResult = dr.child(productInfo.getKey());
+
+                productInfoResult.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Product product = dataSnapshot.getValue(Product.class);
-                        Log.i("ohdoking","!!");
+                        Log.i("ohdoking",dr.push().getKey() + "!!");
                         productResult.setText(product.getName());
                     }
 
