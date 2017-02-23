@@ -57,6 +57,9 @@ dependencies {
     // Firebase UI
     compile 'com.firebaseui:firebase-ui-database:0.4.0'
 
+    //GeoFire
+    compile 'com.firebase:geofire-android:2.1.1'
+
     // Testing dependencies
     androidTestCompile 'junit:junit:4.12'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'

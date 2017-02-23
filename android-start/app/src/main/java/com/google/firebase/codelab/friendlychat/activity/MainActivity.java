@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.firebase.codelab.friendlychat;
+package com.google.firebase.codelab.friendlychat.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -51,6 +51,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.codelab.friendlychat.CodelabPreferences;
+import com.google.firebase.codelab.friendlychat.R;
 import com.google.firebase.codelab.friendlychat.dto.FriendlyMessage;
 import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.database.DataSnapshot;
@@ -338,7 +340,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.fresh_config_menu:
 //                fetchConfig();
 
-                Intent i = new Intent(MainActivity.this, FirebaseTestActivity.class);
+//                Intent i = new Intent(MainActivity.this, FirebaseTestActivity.class);
+                Intent i = new Intent(MainActivity.this, RadiusTestActivity.class);
                 startActivity(i);
 
                 return true;

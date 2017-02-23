@@ -1,4 +1,4 @@
-package com.google.firebase.codelab.friendlychat;
+package com.google.firebase.codelab.friendlychat.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.codelab.friendlychat.R;
 import com.google.firebase.codelab.friendlychat.dto.Product;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,8 +53,8 @@ public class FirebaseTestActivity extends AppCompatActivity {
                 product.setPrice(1000);
                 product.setType("fruits");
 
-                productInfo = dr.push();
-                productInfo.setValue(product);
+                DatabaseReference productInfoList = dr.push();
+                productInfoList.setValue(product);
             }
         });
 
@@ -60,23 +62,49 @@ public class FirebaseTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                DatabaseReference productInfoResult = dr.child(productInfo.getKey());
+//                DatabaseReference productInfoResult = dr.child(productInfo.getKey());
+//
+//                productInfoResult.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        Product product = dataSnapshot.getValue(Product.class);
+//                        Log.i("ohdoking",dr.push().getKey() + "!!");
+//                        productResult.setText(product.getName());
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//                        System.out.println("The read failed: " + databaseError.getCode());
+//                    }
+//                });
 
-                productInfoResult.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        Product product = dataSnapshot.getValue(Product.class);
-                        Log.i("ohdoking",dr.push().getKey() + "!!");
-                        productResult.setText(product.getName());
-                    }
+            }
+        });
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        System.out.println("The read failed: " + databaseError.getCode());
-                    }
-                });
+        dr.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Product product = dataSnapshot.getValue(Product.class);
+                productResult.setText(product.getName());
+            }
 
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
